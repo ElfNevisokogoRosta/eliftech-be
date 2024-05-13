@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Column } from 'typeorm/browser';
+import { Entity, ManyToMany, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Event } from './event.entity';
 
 @Entity()
 export class User {
@@ -17,4 +17,7 @@ export class User {
 
   @Column()
   email: string;
+
+  @ManyToMany(() => Event, (event) => event.participants)
+  member: Event[];
 }
